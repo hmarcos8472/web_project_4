@@ -1,0 +1,10 @@
+.element__caption {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+  height: 80px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 85% auto;
+}
