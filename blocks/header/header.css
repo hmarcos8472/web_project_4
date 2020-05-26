@@ -5,3 +5,28 @@
   padding: 45px 0 40px;
   border-bottom: #545454 1px solid;
 }
+
+@media screen and (max-width: 1024px) {
+  .header {
+    width: 80%;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 824px) {
+  .header {
+    width: 85%;
+  }
+  .header__logo {
+    width: 150px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 500px) {
+  .header {
+    width: 87.5%;
+    padding: 28px 0 32px;
+  }
+  .header__logo {
+    width: 126px;
+  }
+}

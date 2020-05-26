@@ -5,6 +5,6 @@
   border-radius: 0 0 10px 10px;
   height: 80px;
   position: relative;
-  display: grid;
-  grid-template-columns: 85% auto;
+  max-width: 282px;
+  display: flex;
 }
