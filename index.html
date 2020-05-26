@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Web Project 4</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="stylesheet" href="./pages/index.css">
+  </head>
+  <body>
+    <div class="page">
+      <section class="pop-up pop-up_opened">
+        <img src="./images/close.svg" alt="Close" class="pop-up__close">
+        <p class="pop-up__heading">Edit profile</p>
+        <div class="pop-up__form">
+          <input class="pop-up__text-input" type="text" placeholder="Jacques Cousteau">
+          <input class="pop-up__text-input" type="text" placeholder="Explorer">
+          <button class="pop-up__save" type="button" name="Save">Save</button>
+        </div>
+      </section>
+      <div class="overlay">
+        <header class="header">
+          <img src="./images/logo.svg" alt="Around the US" class="header__logo">
+        </header>
+        <main>
+          <section class="profile">
+            <img src="./images/image.jpg" alt="Avatar" class="profile__avatar">
+            <div class="profile__text-container">
+              <p class="profile__name">Jacques Cousteau</p>
+              <p class="profile__occupation">Explorer</p>
+            </div>
+            <button class="profile__edit" type="button" name="button">
+              <img src="./images/edit_button.svg" alt="Edit" class="profile__edit-icon">
+            </button>
+            <button class="profile__add" type="button" name="button">
+              <img src="./images/add.svg" alt="Add">
+            </button>
+          </section>
+
+          <section class = element>
+            <ul class="element__container">
+              <li class="element__card">
+                <img class="element__image" src="./images/yosemite_valley.jpg" alt="Yosemite Valley">
+                <div class="element__caption">
+                  <p class="element__title">Yosemite Valley</p>
+                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                </div>
+              </li>
+              <li class="element__card">
+                <img class="element__image" src="./images/lake_louise.png" alt="Lake Louise">
+                <div class="element__caption">
+                  <p class="element__title">Lake Louise</p>
+                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                </div>
+              </li>
+              <li class="element__card">
+                <img class="element__image" src="./images/bald_mountains.png" alt="Bald Mountains">
+                <div class="element__caption">
+                  <p class="element__title">Bald Mountains</p>
+                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                </div>
+              </li>
+              <li class="element__card">
+                <img class="element__image" src="./images/latemar.png" alt="Latemar">
+                <div class="element__caption">
+                  <p class="element__title">Latemar</p>
+                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                </div>
+              </li>
+              <li class="element__card">
+                <img class="element__image" src="./images/vanois.png" alt="Vanois National Park">
+                <div class="element__caption">
+                  <p class="element__title">Vanois National...</p>
+                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                </div>
+              </li>
+              <li class="element__card">
+                <img class="element__image" src="./images/lago_di_braies.png" alt="Lago Di Braies">
+                <div class="element__caption">
+                  <p class="element__title">Lago Di Braies</p>
+                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <footer class="footer">
+            <p class="footer__copyright">© 2020 Around The U.S.</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
