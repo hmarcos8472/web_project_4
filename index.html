@@ -8,15 +8,6 @@
   </head>
   <body>
     <div class="page">
-      <section class="pop-up pop-up_opened">
-        <img src="./images/close.svg" alt="Close" class="pop-up__close">
-        <p class="pop-up__heading">Edit profile</p>
-        <div class="pop-up__form">
-          <input class="pop-up__text-input" type="text" placeholder="Jacques Cousteau">
-          <input class="pop-up__text-input" type="text" placeholder="Explorer">
-          <button class="pop-up__save" type="button" name="Save">Save</button>
-        </div>
-      </section>
       <div class="overlay">
         <header class="header">
           <img src="./images/logo.svg" alt="Around the US" class="header__logo">
@@ -29,55 +20,54 @@
               <p class="profile__occupation">Explorer</p>
             </div>
             <button class="profile__edit" type="button" name="button">
-              <img src="./images/edit_button.svg" alt="Edit" class="profile__edit-icon">
             </button>
             <button class="profile__add" type="button" name="button">
-              <img src="./images/add.svg" alt="Add">
             </button>
           </section>
 
           <section class = element>
             <ul class="element__container">
               <li class="element__card">
-                <img class="element__image" src="./images/yosemite_valley.jpg" alt="Yosemite Valley">
+                <div class="element__image" style="background-image:url('./images/yosemite_valley.jpg')"></div>
                 <div class="element__caption">
-                  <p class="element__title">Yosemite Valley</p>
-                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                  <h2 class="element__title">Yosemite Valley</h2>
+                  <button class="element__heart" type="button" name="button"></button>
                 </div>
               </li>
               <li class="element__card">
-                <img class="element__image" src="./images/lake_louise.png" alt="Lake Louise">
+                <div class="element__image" style="background-image:url('./images/lake_louise.png')">
+                </div>
                 <div class="element__caption">
-                  <p class="element__title">Lake Louise</p>
-                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                  <h2 class="element__title">Lake Louise</h2>
+                  <button class="element__heart" type="button" name="button"></button>
                 </div>
               </li>
               <li class="element__card">
-                <img class="element__image" src="./images/bald_mountains.png" alt="Bald Mountains">
+                <div class="element__image" style="background-image:url('./images/bald_mountains.png')"></div>
                 <div class="element__caption">
-                  <p class="element__title">Bald Mountains</p>
-                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                  <h2 class="element__title">Bald Mountains</h2>
+                  <button class="element__heart" type="button" name="button"></button>
                 </div>
               </li>
               <li class="element__card">
-                <img class="element__image" src="./images/latemar.png" alt="Latemar">
+                <div class="element__image" style="background-image:url('./images/latemar.png')"></div>
                 <div class="element__caption">
-                  <p class="element__title">Latemar</p>
-                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                  <h2 class="element__title">Latemar</h2>
+                  <button class="element__heart" type="button" name="button"></button>
                 </div>
               </li>
               <li class="element__card">
-                <img class="element__image" src="./images/vanois.png" alt="Vanois National Park">
+                <div class="element__image" style="background-image:url('./images/vanois.png')"></div>
                 <div class="element__caption">
-                  <p class="element__title">Vanois National...</p>
-                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                  <h2 class="element__title">Vanois National Park</h2>
+                  <button class="element__heart" type="button" name="button"></button>
                 </div>
               </li>
               <li class="element__card">
-                <img class="element__image" src="./images/lago_di_braies.png" alt="Lago Di Braies">
+                <div class="element__image" style="background-image:url('./images/lago_di_braies.png')"></div>
                 <div class="element__caption">
-                  <p class="element__title">Lago Di Braies</p>
-                  <img class="element__heart" src="./images/heart-icon.svg" alt="Like">
+                  <h2 class="element__title">Lago Di Braies</h2>
+                  <button class="element__heart" type="button" name="button"></button>
                 </div>
               </li>
             </ul>
@@ -88,6 +78,16 @@
           </footer>
         </main>
       </div>
+
+      <section class="pop-up pop-up_opened">
+        <img src="./images/close.svg" alt="Close" class="pop-up__close">
+        <p class="pop-up__heading">Edit profile</p>
+        <div class="pop-up__form">
+          <input class="pop-up__name-input" type="text" placeholder="Jacques Cousteau">
+          <input class="pop-up__occupation-input" type="text" placeholder="Explorer">
+          <button class="pop-up__save" type="button" name="Save">Save</button>
+        </div>
+      </section>
     </div>
     <script src="script.js"></script>
   </body>

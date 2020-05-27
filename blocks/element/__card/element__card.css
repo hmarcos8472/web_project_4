@@ -1,0 +1,9 @@
+.element__card {
+  max-width: 282px;
+}
+
+@media (min-width: 320px) and (max-width: 500px) {
+  .element__card {
+    margin: 0 auto;
+  }
+}

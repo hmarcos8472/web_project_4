@@ -1,97 +1,16 @@
-
-@import url("./__image/element__image.css");
+@import url("./__container/element__container.css");
 @import url("./__caption/element__caption.css");
 @import url("./__title/element__title.css");
 @import url("./__heart/element__heart.css");
-@import url("./__container/element__container.css");
+@import url("./__image/element__image.css");
+@import url("./__card/element__card.css");
 
 .element {
-  padding: 0;
-  margin: 0 auto;
-  width: 70%;
-  max-width: 882px;
-}
-
-@media screen and (max-width: 1024px) {
-  .element {
-    width: 80%;
-  }
-  .element__title {
-    font-size: 22px;
-  }
-}
-
-@media (min-width: 500px) and (max-width: 824px) {
-  .element {
-    width: 85%;
-  }
-  .element__container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .element__image {
-    width: 345px;
-  }
-  .element__caption {
-    max-width: 345px;
-    height: 65px;
-  }
-  .element__title {
-    font-size: 18px;
-    padding: 20px 0 0 15px;
-  }
-  .element__heart {
-    padding: 25px 12px 0 0;
-    width: 18px;
-    height: 15px;
-  }
+  padding: 50px 0 66px;
 }
 
 @media (min-width: 320px) and (max-width: 500px) {
   .element {
-    width: 90%;
-  }
-  .element__card {
-    margin: 0 auto;
-  }
-  .element__container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  .element__image {
-    width: 282px;
-    margin: 0 auto -3px;
-  }
-  .element__caption {
-    max-width: 282px;
-  }
-}
-
-@media (min-width: 0px) and (max-width: 320px) {
-  .element {
-    width: 90%;
-  }
-  .element__card {
-    margin: 0 auto;
-  }
-  .element__container {
-    grid-template-columns: repeat(1, 1fr);
-    grid-row-gap: 20px;
-  }
-  .element__title {
-    font-size: 24px;
-    line-height: 29px;
-  }
-  .element__image {
-    width: 282px;
-    margin: 0 auto -3px;
-  }
-  .element__caption {
-    max-width: 282px;
-    height: 80px;
-  }
-  .element__heart {
-    padding: 32px 21px 0 0;
-  }
-  .element__container {
     padding: 36px 0 48px;
   }
 }

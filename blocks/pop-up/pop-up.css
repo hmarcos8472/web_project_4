@@ -1,7 +1,8 @@
 @import url("./__close/pop-up__close.css");
 @import url("./__form/pop-up__form.css");
 @import url("./__heading/pop-up__heading.css");
-@import url("./__text-input/pop-up__text-input.css");
+@import url("./__name-input/pop-up__name-input.css");
+@import url("./__occupation-input/pop-up__occupation-input.css");
 @import url("./__save/pop-up__save.css");
 @import url("./_opened/pop-up_opened.css");
 
@@ -38,43 +39,13 @@
     height: 280px;
     left: 10%;
   }
-  .pop-up__save {
-    font-size: 16px;
-    margin: 15px 0 30px;
-  }
-  .pop-up__text-input {
-    margin: 0 0 20px;
-  }
-  .pop-up__heading {
-    padding: 30px 0 45px;
-  }
-  .pop-up__close {
-    width: 27px;
-    height: 27px;
-  }
 }
 
-@media (min-width: 0px) and (max-width: 430px) {
+@media (max-width: 430px) {
   .pop-up {
     width: 260px;
     height: 230px;
     left: 10%;
     right: 10%;
-  }
-  .pop-up__save {
-    font-size: 14px;
-    margin: 12px 0 27px;
-  }
-  .pop-up__text-input {
-    margin: 0 0 15px;
-  }
-  .pop-up__heading {
-    padding: 25px 0 33px;
-  }
-  .pop-up__close {
-    width: 20px;
-    height: 20px;
-    right: -20px;
-    top: -20px;
   }
 }

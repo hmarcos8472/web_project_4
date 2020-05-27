@@ -1,6 +1,28 @@
 .element__heart {
-width: 20px;
-height: 18px;
-padding: 31px 18px 0 0;
-margin: 0;
+  height: 19px;
+  width: 23px;
+  background-color: #fff;
+  padding: 0;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  background-image: url("./../../../images/heart-icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  position: absolute;
+  top: 32px;
+  right: 17px;
+}
+
+.element__heart:hover {
+  opacity: 60%;
+  transition: 1s;
+}
+
+@media (min-width: 700px) and (max-width: 824px) {
+  .element__heart {
+    top: 28px;
+    right: 14px;
+  }
 }

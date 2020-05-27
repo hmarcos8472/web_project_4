@@ -18,53 +18,19 @@
   .profile {
     width: 80%;
   }
-  .profile__name {
-    font-size: 34px;
-    line-height: 100%;
-  }
 }
 
 @media (min-width: 500px) and (max-width: 824px) {
   .profile {
     width: 85%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 99% auto;
     grid-template-areas:
     "avatar avatar"
     "name edit"
     "occupation occupation"
     "add add";
     position: relative;
-  }
-  .profile__avatar {
-    margin: 0 auto;
-    grid-area: avatar;
-  }
-  .profile__text-container {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    width: 200%;
-  }
-  .profile__name {
-    grid-area: name;
-    margin: 20px 0 20px;
-  }
-  .profile__occupation {
-    grid-area: occupation;
-    margin: 0 0 20px;
-  }
-  .profile__edit {
-    width: 20px;
-    grid-area: edit;
-    margin: 0;
-    position: absolute;
-    right: 0;
-    top: 30px;
-  }
-  .profile__add {
-    grid-area: add;
-    margin: 0;
   }
 }
 
@@ -80,39 +46,9 @@
     "add add";
     position: relative;
   }
-  .profile__avatar {
-    margin: 0 auto;
-    grid-area: avatar;
-  }
-  .profile__text-container {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    width: 200%;
-  }
-  .profile__name {
-    grid-area: name;
-    margin: 20px 0 20px;
-    font-size: 26px;
-  }
-  .profile__occupation {
-    grid-area: occupation;
-    margin: 0 0 20px;
-  }
-  .profile__edit {
-    grid-area: edit;
-    margin: 0;
-    position: absolute;
-    right: 0;
-    top: 25px;
-  }
-  .profile__add {
-    grid-area: add;
-    margin: 0;
-  }
 }
 
-@media (min-width: 0px) and (max-width: 320px) {
+@media (max-width: 320px) {
   .profile {
     width: 87.5%;
     display: grid;
@@ -124,43 +60,5 @@
     "add add";
     position: relative;
     padding: 42px 0 0;
-  }
-  .profile__text-container {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    width: 200%;
-  }
-  .profile__name {
-    grid-area: name;
-    margin: 14px 0;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 56px;
-  }
-  .profile__occupation {
-    grid-area: occupation;
-    margin: 0 0 36px;
-    font-size: 14px;
-    line-height: 17px;
-  }
-  .profile__edit {
-    grid-area: edit;
-    margin: 6px 0 0;
-    position: absolute;
-    right: 0;
-    top: 25px;
-    box-sizing: border-box;
-    min-height: 18px;
-    max-width: 18px;
-  }
-  .profile__edit-icon {
-    min-height: 7.5px;
-    min-width: 7.5px;
-    padding: 5.25px;
-  }
-  .profile__add {
-    grid-area: add;
-    margin: 0;
   }
 }
