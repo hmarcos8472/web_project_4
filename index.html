@@ -27,49 +27,6 @@
 
           <section class = element>
             <ul class="element__container">
-              <li class="element__card">
-                <div class="element__image" style="background-image:url('./images/yosemite_valley.jpg')"></div>
-                <div class="element__caption">
-                  <h2 class="element__title">Yosemite Valley</h2>
-                  <button class="element__heart" type="button" name="button"></button>
-                </div>
-              </li>
-              <li class="element__card">
-                <div class="element__image" style="background-image:url('./images/lake_louise.png')">
-                </div>
-                <div class="element__caption">
-                  <h2 class="element__title">Lake Louise</h2>
-                  <button class="element__heart" type="button" name="button"></button>
-                </div>
-              </li>
-              <li class="element__card">
-                <div class="element__image" style="background-image:url('./images/bald_mountains.png')"></div>
-                <div class="element__caption">
-                  <h2 class="element__title">Bald Mountains</h2>
-                  <button class="element__heart" type="button" name="button"></button>
-                </div>
-              </li>
-              <li class="element__card">
-                <div class="element__image" style="background-image:url('./images/latemar.png')"></div>
-                <div class="element__caption">
-                  <h2 class="element__title">Latemar</h2>
-                  <button class="element__heart" type="button" name="button"></button>
-                </div>
-              </li>
-              <li class="element__card">
-                <div class="element__image" style="background-image:url('./images/vanois.png')"></div>
-                <div class="element__caption">
-                  <h2 class="element__title">Vanois National Park</h2>
-                  <button class="element__heart" type="button" name="button"></button>
-                </div>
-              </li>
-              <li class="element__card">
-                <div class="element__image" style="background-image:url('./images/lago_di_braies.png')"></div>
-                <div class="element__caption">
-                  <h2 class="element__title">Lago Di Braies</h2>
-                  <button class="element__heart" type="button" name="button"></button>
-                </div>
-              </li>
             </ul>
           </section>
 
@@ -88,6 +45,32 @@
           <button class="pop-up__save" type="button" name="Save">Save</button>
         </div>
       </section>
+      <section class="pop-up pop-up_opened pop-up_add">
+        <img src="./images/close.svg" alt="Close" class="pop-up__close pop-up__close_add">
+        <p class="pop-up__heading pop-up__heading_add">New Place</p>
+        <div class="pop-up__form">
+          <input class="pop-up__title-input" type="text" placeholder="Title">
+          <input class="pop-up__url-input" type="text" placeholder="Image URL">
+          <button class="pop-up__save pop-up__save_add" type="button" name="Save">Save</button>
+        </div>
+      </section>
+    </div>
+    <template id="place">
+      <li class="element__card">
+        <div class="element__image" style="background-image:url('#')">
+          <button class="element__trash" type="button" name="button"></button>
+        </div>
+        <div class="element__caption">
+          <h2 class="element__title"></h2>
+          <button class="element__heart" type="button" name="button"></button>
+        </div>
+      </li>
+    </template>
+    <div class="element__pop-up-container">
+      <div class="element__pop-up" style="background-image:url('#')">
+        <img src="./images/close.svg" alt="Close" class="pop-up__close pop-up__close_image">
+      </div>
+      <p class="element__tag"></p>
     </div>
     <script src="script.js"></script>
   </body>

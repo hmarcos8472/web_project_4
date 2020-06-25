@@ -4,6 +4,11 @@
 @import url("./__heart/element__heart.css");
 @import url("./__image/element__image.css");
 @import url("./__card/element__card.css");
+@import url("./__trash/element__trash.css");
+@import url("./__pop-up-container/element__pop-up-container.css");
+@import url("./__pop-up/element__pop-up.css");
+@import url("./__pop-up-container/_display/element__pop-up-container_display.css");
+@import url("./__tag/element__tag.css");
 
 .element {
   padding: 50px 0 66px;

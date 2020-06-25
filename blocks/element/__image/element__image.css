@@ -9,6 +9,7 @@
   border-radius: 10px 10px 0 0;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
 @media (min-width: 500px) and (max-width: 700px) {

@@ -9,7 +9,7 @@
   background-image: url("./../../../images/heart-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: auto;
+  background-size: contain;
   position: absolute;
   top: 32px;
   right: 17px;

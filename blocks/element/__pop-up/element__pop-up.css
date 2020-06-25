@@ -1,0 +1,9 @@
+.element__pop-up {
+  position: relative;
+  width: 75vw;
+  height: 75vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  z-index: 3;
+}
