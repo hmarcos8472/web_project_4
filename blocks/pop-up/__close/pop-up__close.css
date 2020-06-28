@@ -3,6 +3,12 @@
   right: -32px;
   top: -32px;
   cursor: pointer;
+  background-image: url("./../../../images/close.svg");
+  height: 32px;
+  width: 32px;
+  background-color: transparent;
+  background-size: contain;
+  border: none
 }
 
 .pop-up__close:hover {

@@ -13,48 +13,50 @@ const addButton = document.querySelector(".profile__add")
 const popupAdd = document.querySelector(".pop-up_add")
 const closeButtonAdd = document.querySelector(".pop-up__close_add")
 
-function openEdit() {
-  popup.classList.toggle('pop-up_opened')
-  popup.classList.add("smooth-popup")
-  overlay.classList.add('overlay_dark')
+const cardContainer = document.querySelector("element__container")
+const cardPopupContainer = document.querySelector(".element__pop-up-container")
+const cardPopup = document.querySelector(".element__pop-up")
+const cardTag = document.querySelector(".element__tag")
+const cardPopupClose = document.querySelector(".pop-up__close_image")
+
+const addCardButton = document.querySelector(".pop-up__save_add")
+
+const addFormTitle = document.querySelector(".pop-up__title-input")
+const addFormLink = document.querySelector(".pop-up__url-input")
+const addCardSubmit = document.querySelector(".pop-up__save_add")
+const places = document.querySelector(".element__container")
+const placeTemplate = document.querySelector("#place").content
+
+function popupHandler(e) {
+  if (e.target.className == "profile__edit" || e.target.className == "pop-up__close" || e.target.className == "pop-up__save"){
+    popup.classList.toggle("pop-up_opened")
+    popup.classList.toggle("smooth-popup")
+    overlay.classList.toggle("overlay_dark")
+  }
+  if (e.target.className == "profile__add" || e.target.className == "pop-up__close pop-up__close_add" || e.target.className == "pop-up__save pop-up__save_add"){
+    popupAdd.classList.toggle("pop-up_opened")
+    popupAdd.classList.toggle("smooth-popup")
+    overlay.classList.toggle("overlay_dark")
+  }
+  if (e.target.className == "element__image"){
+    cardPopup.style.backgroundImage = e.target.style.backgroundImage
+    cardTag.innerText = e.target.parentElement.querySelector(".element__title").innerText
+    cardPopupContainer.classList.toggle("element__pop-up-container_display")
+    overlay.classList.toggle("overlay_dark")
+    cardPopup.classList.toggle("smooth-popup")
+  }
+  if (e.target.className == "pop-up__close pop-up__close_image"){
+    cardPopupContainer.classList.toggle("element__pop-up-container_display")
+    overlay.classList.toggle("overlay_dark")
+    cardPopup.classList.toggle("smooth-popup")
+  }
 }
 
-function closeEdit() {
-  popup.classList.toggle('pop-up_opened')
-  popup.classList.remove("smooth-popup")
-  overlay.classList.remove('overlay_dark')
-}
-
-function submitEdit() {
+function submitEdit(e) {
   name.textContent = editFormName.value
   occupation.textContent = editFormOccupation.value
-  overlay.classList.remove('overlay_dark')
-  popup.classList.toggle('pop-up_opened')
+  popupHandler(e)
 }
-
-function openAdd() {
-  popupAdd.classList.toggle('pop-up_opened')
-  popupAdd.classList.add("smooth-popup")
-  overlay.classList.add('overlay_dark')
-}
-
-function closeAdd() {
-  popupAdd.classList.toggle('pop-up_opened')
-  popupAdd.classList.remove("smooth-popup")
-  overlay.classList.remove('overlay_dark')
-}
-
-
-//Adding Listeners for 'Edit' and 'Add' Buttons/////////////////////////////////
-editButton.addEventListener("click", openEdit)
-closeButton.addEventListener("click", closeEdit)
-submitButton.addEventListener("click", submitEdit)
-
-addButton.addEventListener("click", openAdd)
-closeButtonAdd.addEventListener("click", closeAdd)
-
-
-//Rendering Cards///////////////////////////////////////////////////////////////
 
 const initialCards = [
     {
@@ -82,109 +84,57 @@ const initialCards = [
         link: "https://images.unsplash.com/photo-1517154596051-c6b5c62e3276?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=1132&q=80"
     }
 ];
-//Function for Rendering initialCards///////////////////////////////////////////
-function renderPlaces(cards) {
-  const places = document.querySelector(".element__container")
-  const placeTemplate = document.querySelector("#place").content
-  for (card of cards) {
-    placeCard = placeTemplate.cloneNode(true)
+
+function likeImage(e){
+  e.target.style.backgroundImage = 'url(images/heart-icon-filled.svg)'
+}
+
+function deleteImage(e){
+  const correspondingCard = e.target.parentElement.parentElement
+  correspondingCard.parentElement.removeChild(correspondingCard)
+}
+
+function createCard(e) {
+  if (e.target.className == "pop-up__save pop-up__save_add"){
+    const card = {
+      name: addFormTitle.value,
+      link: addFormLink.value,
+    }
     const link = 'url(' + card.link + ')'
+    const placeCard = placeTemplate.cloneNode(true)
     placeCard.querySelector(".element__image").style.backgroundImage = link
     placeCard.querySelector(".element__title").textContent = card.name
-    places.append(placeCard)
+    placeCard.querySelector(".element__heart").addEventListener("click", likeImage)
+    placeCard.querySelector(".element__image").addEventListener("click", popupHandler)
+    placeCard.querySelector(".element__trash").addEventListener("click", deleteImage)
+    places.prepend(placeCard)
   }
 }
 
-renderPlaces(initialCards)
-
-//Function for Adding a Card////////////////////////////////////////////////////
-const addFormTitle = document.querySelector(".pop-up__title-input")
-const addFormLink = document.querySelector(".pop-up__url-input")
-const addCardSubmit = document.querySelector(".pop-up__save_add")
-
-function addCard() {
-  const places = document.querySelector(".element__container")
-  const placeTemplate = document.querySelector("#place").content
-  placeCard = placeTemplate.cloneNode(true)
-  var card = {
-    name: addFormTitle.value,
-    link: addFormLink.value,
-  }
-  const link = 'url(' + card.link + ')'
-  placeCard.querySelector(".element__image").style.backgroundImage = link
-  placeCard.querySelector(".element__title").textContent = card.name
-  places.prepend(placeCard)
-  initialCards.unshift(card)
-  popupAdd.classList.toggle('pop-up_opened')
-  overlay.classList.remove('overlay_dark')
-  for (var i = 0 ; i < cardContainer.children.length ; ++i) {
-    cardContainer.children[i].querySelector(".element__image").addEventListener("click",popupImage)
-  }
-  for (var i = 0 ; i < cardContainer.children.length ; ++i) {
-    cardContainer.children[i].querySelector(".element__trash").addEventListener("click",deleteImage);
-    cardContainer.children[i].querySelector(".element__heart").addEventListener("click",likeImage);
+function renderCards(cards){
+  for (card of cards) {
+    const link = 'url(' + card.link + ')'
+    const placeCard = placeTemplate.cloneNode(true)
+    placeCard.querySelector(".element__image").style.backgroundImage = link
+    placeCard.querySelector(".element__title").textContent = card.name
+    placeCard.querySelector(".element__heart").addEventListener("click", likeImage)
+    placeCard.querySelector(".element__image").addEventListener("click", popupHandler)
+    placeCard.querySelector(".element__trash").addEventListener("click", deleteImage)
+    places.prepend(placeCard)
   }
 }
 
-addCardSubmit.addEventListener("click", addCard)
+//Adding Listeners for 'Edit' and 'Add' Buttons/////////////////////////////////
+editButton.addEventListener("click", popupHandler)
+closeButton.addEventListener("click", popupHandler)
+submitButton.addEventListener("click", submitEdit)
 
-//Adding EventListeners for each Card///////////////////////////////////////////
-const cardContainer = document.querySelector(".element__container")
+addButton.addEventListener("click", popupHandler)
+closeButtonAdd.addEventListener("click", popupHandler)
+addCardButton.addEventListener("click", popupHandler)
 
-//Function for Displaying Popup of Card/////////////////////////////////////////
-function popupImage(e) {
-  var card = e
-  const cardPopupContainer = document.querySelector(".element__pop-up-container")
-  const cardPopup = document.querySelector(".element__pop-up")
-  const cardTag = document.querySelector(".element__tag")
-  cardPopup.style.backgroundImage = card.target.style.backgroundImage
-  cardTag.innerText = card.target.parentElement.querySelector(".element__title").innerText
-  cardPopupContainer.classList.add("element__pop-up-container_display")
-  overlay.classList.add("overlay_dark")
-  cardPopup.classList.add("smooth-popup")
-}
-
-//Adding EventListeners for Each card///////////////////////////////////////////
-for (var i = 0 ; i < cardContainer.children.length ; ++i) {
-  cardContainer.children[i].querySelector(".element__image").addEventListener("click",popupImage);
-}
-
-//Function for Closing Image Popups/////////////////////////////////////////////
-function closeImage() {
-  const cardPopupContainer = document.querySelector(".element__pop-up-container")
-  cardPopupContainer.classList.remove("element__pop-up-container_display")
-  overlay.classList.remove("overlay_dark")
-}
-
-const imageCloseButton = document.querySelector(".pop-up__close_image")
-imageCloseButton.addEventListener("click", closeImage)
+cardPopupClose.addEventListener("click", popupHandler)
 
 
-//Function for Deleting Cards///////////////////////////////////////////////////
-function deleteImage(e) {
-  const card = e
-  const correspondingCard = card.target.parentElement.parentElement
-  const cardName = correspondingCard.querySelector(".element__title").innerText
-  const index = initialCards.map(function (card) { return card.name; }).indexOf(cardName);
-  cardContainer.children[index].remove()
-}
-
-for (var i = 0 ; i < cardContainer.children.length ; ++i) {
-  cardContainer.children[i].querySelector(".element__trash").addEventListener("click",deleteImage);
-}
-
-//Function for Liking Images////////////////////////////////////////////////////
-function likeImage(e) {
-  const button = e
-  correspondingCard = button.target.parentElement.parentElement
-  const cardName = correspondingCard.querySelector(".element__title").innerText
-  const index = initialCards.map(function (card) { return card.name; }).indexOf(cardName);
-  const heart = cardContainer.children[index].querySelector(".element__heart")
-  heart.style.backgroundImage = "url('./images/heart-icon-filled.svg')"
-  console.log(index)
-  console.log(heart)
-}
-
-for (var i = 0 ; i < cardContainer.children.length ; ++i) {
-  cardContainer.children[i].querySelector(".element__heart").addEventListener("click",likeImage);
-}
+addCardButton.addEventListener("click", createCard)
+window.addEventListener("load"(renderCards(initialCards)))
