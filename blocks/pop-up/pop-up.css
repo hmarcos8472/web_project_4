@@ -8,14 +8,13 @@
 @import url("./__occupation-input/pop-up__occupation-input.css");
 @import url("./__save/pop-up__save.css");
 @import url("./_opened/pop-up_opened.css");
+@import url("./__container/pop-up__container.css");
+@import url("./__container/_active/pop-up__container_active.css");
 
 .pop-up {
   background-color: #fff;
-  width: 430px;
   height: 330px;
-  position: fixed;
-  top: 20%;
-  left: 30%;
+  width: 430px;
   z-index: 2;
   border-radius: 10px;
 }
