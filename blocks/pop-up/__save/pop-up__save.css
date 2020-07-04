@@ -1,3 +1,5 @@
+@import url("./_disabled/pop-up__save_disabled.css");
+
 .pop-up__save {
   background-color: #000;
   color: #fff;

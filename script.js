@@ -79,6 +79,18 @@ function popUpImage(e){
     cardTag.innerText = e.target.parentElement.querySelector(".element__title").innerText
     cardPopupContainer.classList.toggle("element__pop-up-container_display")
     overlay.classList.toggle("overlay_dark")
+    window.addEventListener("click", function(e){
+      if (e.target.className == "element__pop-up-container element__pop-up-container_display"){
+        cardPopupContainer.classList.toggle("element__pop-up-container_display")
+        overlay.classList.toggle("overlay_dark")
+      }
+    })
+    window.addEventListener("keydown", function(e){
+      if (e.key == "Escape"){
+        cardPopupContainer.classList.toggle("element__pop-up-container_display")
+        overlay.classList.toggle("overlay_dark")
+      }
+    })
   }
   if (e.target.className == "pop-up__close pop-up__close_image"){
     cardPopupContainer.classList.toggle("element__pop-up-container_display")
@@ -138,5 +150,15 @@ addCardButton.addEventListener("click", function(){
 
 cardPopupClose.addEventListener("click", popUpImage)
 
+window.addEventListener("click", function(e){
+  if (e.target.className == "element__pop-up-container element__pop-up-container_display"){
+    cardPopupContainer.classList.toggle("element__pop-up-container_display")
+    overlay.classList.toggle("overlay_dark")
+  }
+})
+
+window.addEventListener("keydown", function(){
+
+})
 
 window.addEventListener("load", renderCards)
