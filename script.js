@@ -79,24 +79,35 @@ function popUpImage(e){
     cardTag.innerText = e.target.parentElement.querySelector(".element__title").innerText
     cardPopupContainer.classList.toggle("element__pop-up-container_display")
     overlay.classList.toggle("overlay_dark")
-    window.addEventListener("click", function(e){
-      if (e.target.className == "element__pop-up-container element__pop-up-container_display"){
-        cardPopupContainer.classList.toggle("element__pop-up-container_display")
-        overlay.classList.toggle("overlay_dark")
-      }
-    })
-    window.addEventListener("keydown", function(e){
-      if (e.key == "Escape"){
-        cardPopupContainer.classList.toggle("element__pop-up-container_display")
-        overlay.classList.toggle("overlay_dark")
-      }
-    })
   }
   if (e.target.className == "pop-up__close pop-up__close_image"){
     cardPopupContainer.classList.toggle("element__pop-up-container_display")
     overlay.classList.toggle("overlay_dark")
   }
 }
+
+function removePopupListeners(){
+  window.removeEventListener("keydown", removeImagePopup)
+  window.removeEventListener("click", removeImagePopup)
+}
+
+function removeImagePopup(e){
+  if (e.key == "Escape" || e.target.className == "element__pop-up-container element__pop-up-container_display"){
+    cardPopupContainer.classList.toggle("element__pop-up-container_display")
+    overlay.classList.toggle("overlay_dark")
+    removePopupListeners()
+  }
+  console.log(e.target)
+}
+
+function popupClickHandler(e){
+  window.addEventListener("click", removeImagePopup)
+}
+
+function popupEscape(e){
+  window.addEventListener("keydown", removeImagePopup)
+}
+
 
 function createCard(card){
   const placeCard = placeTemplate.cloneNode(true)
@@ -106,12 +117,16 @@ function createCard(card){
   placeCard.querySelector(".element__title").textContent = card.name
   placeCard.querySelector(".element__heart").addEventListener("click", likeImage)
   cardImage.addEventListener("click", popUpImage)
+  cardImage.addEventListener("click", (e) => {
+    popupClickHandler(e)
+  })
+  cardImage.addEventListener("click", popupEscape)
   placeCard.querySelector(".element__trash").addEventListener("click", deleteImage)
   places.prepend(placeCard)
 }
 
 function renderCards(){
-  initialCards.forEach((card, i) => {
+  initialCards.forEach((card) => {
     createCard(card)
   });
 }
@@ -125,40 +140,32 @@ function addCard(){
 }
 
 //Adding Listeners for 'Edit' Buttons///////////////////////////////////////////
-editButton.addEventListener("click", function(){
+editButton.addEventListener("click", () => {
   popupHandler(popupContainerEdit)
 })
-closeButton.addEventListener("click", function(){
+closeButton.addEventListener("click", () => {
   popupHandler(popupContainerEdit)
 })
-submitButton.addEventListener("click", function(){
+submitButton.addEventListener("click", () => {
   submitEdit()
   popupHandler(popupContainerEdit)
 })
 
 //Adding Listeners for 'Add' Buttons////////////////////////////////////////////
-addButton.addEventListener("click", function(){
+addButton.addEventListener("click", () => {
   popupHandler(popupContainerAdd)
 })
-closeButtonAdd.addEventListener("click", function(){
+
+closeButtonAdd.addEventListener("click", () => {
   popupHandler(popupContainerAdd)
 })
-addCardButton.addEventListener("click", function(){
+addCardButton.addEventListener("click", () => {
   addCard()
   popupHandler(popupContainerAdd)
 })
 
-cardPopupClose.addEventListener("click", popUpImage)
-
-window.addEventListener("click", function(e){
-  if (e.target.className == "element__pop-up-container element__pop-up-container_display"){
-    cardPopupContainer.classList.toggle("element__pop-up-container_display")
-    overlay.classList.toggle("overlay_dark")
-  }
-})
-
-window.addEventListener("keydown", function(){
-
+cardPopupClose.addEventListener("click", (e) => {
+  popUpImage(e)
 })
 
 window.addEventListener("load", renderCards)

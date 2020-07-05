@@ -1,12 +1,12 @@
 function displayErrorMessage(form, input, errorClass, inputErrorClass) {
-  const errorText = form.querySelector('#'+ input.id + '-error')
+  const errorText = form.querySelector(`#${input.id}-error`)
   errorText.textContent = input.validationMessage
   errorText.classList.remove(errorClass)
   input.classList.add(inputErrorClass)
 }
 
 function hideErrorMessage(form, input, errorClass, inputErrorClass) {
-  const errorText = form.querySelector('#'+ input.id + '-error')
+  const errorText = form.querySelector(`#${input.id}-error`)
   errorText.textContent = input.validationMessage
   errorText.classList.add(errorClass)
   input.classList.remove(inputErrorClass)
@@ -39,15 +39,14 @@ function enableValidation({formSelector, inputSelector, submitButtonSelector, in
   const forms = [...document.querySelectorAll(formSelector)]
   forms.forEach((form) => {
     const inputs = [...form.querySelectorAll(inputSelector)]
-    const submitButton = form.querySelector(submitButtonSelector)
-    form.addEventListener("submit", function(e){
+    form.addEventListener("submit", (e) => {
       e.preventDefault()
     })
-    form.addEventListener("input", function(){
+    form.addEventListener("input", () => {
       setButtonState(form, {submitButtonSelector: submitButtonSelector, inactiveButtonClass: inactiveButtonClass})
     })
     inputs.forEach((input) => {
-      input.addEventListener("input", function(){
+      input.addEventListener("input", () => {
         inputValidity(form, input, errorClass, inputErrorClass)
       })
     });
