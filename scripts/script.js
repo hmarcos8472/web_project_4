@@ -4,7 +4,7 @@ const popup = document.querySelector(".pop-up")
 const popupContainerEdit = document.querySelector(".pop-up__container")
 const popupContainerAdd = document.querySelector(".pop-up__container_add")
 const closeButton = document.querySelector(".pop-up__close")
-const overlay = document.querySelector(".overlay")
+//const overlay = document.querySelector(".overlay")
 const editFormName = document.querySelector(".pop-up__name-input")
 const editFormOccupation = document.querySelector(".pop-up__occupation-input")
 const submitButton = document.querySelector(".pop-up__save")
@@ -15,9 +15,6 @@ const addButton = document.querySelector(".profile__add")
 const popupAdd = document.querySelector(".pop-up_add")
 const closeButtonAdd = document.querySelector(".pop-up__close_add")
 
-const cardPopupContainer = document.querySelector(".element__pop-up-container")
-const cardPopup = document.querySelector(".element__pop-up")
-const cardTag = document.querySelector(".element__tag")
 const cardPopupClose = document.querySelector(".pop-up__close_image")
 
 const addCardButton = document.querySelector(".pop-up__save_add")
@@ -35,42 +32,6 @@ function popupHandler(modal){
 function submitEdit() {
   name.textContent = editFormName.value
   occupation.textContent = editFormOccupation.value
-}
-
-const initialCards = [
-    {
-        name: "Esquel, Chubut",
-        link: "https://images.unsplash.com/photo-1574451987955-6395ba377b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80"
-    },
-    {
-        name: "Speikboden",
-        link: "https://images.unsplash.com/photo-1522493461283-c57d4e78fa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    },
-    {
-        name: "Cerro Catedral",
-        link: "https://images.unsplash.com/photo-1514399344059-d1128025c6db?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    },
-    {
-        name: "Garnet Lake",
-        link: "https://images.unsplash.com/photo-1501776192086-602832fae6e6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    },
-    {
-        name: "Kualoa Ranch",
-        link: "https://images.unsplash.com/photo-1545334270-c13944f64dc5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-    },
-    {
-        name: "El Chalten",
-        link: "https://images.unsplash.com/photo-1517154596051-c6b5c62e3276?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=1132&q=80"
-    }
-];
-
-function likeImage(e){
-  e.target.style.backgroundImage = 'url(images/heart-icon-filled.svg)'
-}
-
-function deleteImage(e){
-  const correspondingCard = e.target.parentElement.parentElement
-  correspondingCard.parentElement.removeChild(correspondingCard)
 }
 
 function popUpImage(e){
@@ -97,7 +58,6 @@ function removeImagePopup(e){
     overlay.classList.toggle("overlay_dark")
     removePopupListeners()
   }
-  console.log(e.target)
 }
 
 function popupClickHandler(e){
@@ -123,20 +83,6 @@ function createCard(card){
   cardImage.addEventListener("click", popupEscape)
   placeCard.querySelector(".element__trash").addEventListener("click", deleteImage)
   places.prepend(placeCard)
-}
-
-function renderCards(){
-  initialCards.forEach((card) => {
-    createCard(card)
-  });
-}
-
-function addCard(){
-  const card = {
-    name: addFormTitle.value,
-    link: addFormLink.value,
-  }
-  createCard(card)
 }
 
 //Adding Listeners for 'Edit' Buttons///////////////////////////////////////////
@@ -168,4 +114,4 @@ cardPopupClose.addEventListener("click", (e) => {
   popUpImage(e)
 })
 
-window.addEventListener("load", renderCards)
+//window.addEventListener("load", renderCards)
