@@ -1,5 +1,5 @@
 import {Card, renderInitialCards} from "./Card.js"
-import {FormValidator, validateForms} from "./FormValidator.js"
+import {FormValidator} from "./FormValidator.js"
 
 // Declaring Buttons and containers //////////////////////////////////////////////////////////////////////////////
 const editButton = document.querySelector(".profile__edit")
@@ -12,7 +12,6 @@ const submitButton = document.querySelector(".pop-up__save")
 const name = document.querySelector(".profile__name")
 const occupation = document.querySelector(".profile__occupation")
 const addButton = document.querySelector(".profile__add")
-const popupAdd = document.querySelector(".pop-up_add")
 const closeButtonAdd = document.querySelector(".pop-up__close_add")
 const cardPopupClose = document.querySelector(".pop-up__close_image")
 const addCardButton = document.querySelector(".pop-up__save_add")
@@ -57,7 +56,13 @@ const formValidatorSettings = {
   inputErrorClass: "pop-up__input_type_error",
   errorClass: "pop-up__error_visible"
 }
-validateForms(formValidatorSettings)
+
+const forms = [...document.querySelectorAll(".pop-up__form")]
+const validateEdit = new FormValidator(formValidatorSettings, forms[0])
+const validateAddCard = new FormValidator(formValidatorSettings, forms[1])
+validateEdit._validateForm()
+validateAddCard._validateForm()
+
 // Submitting forms functionality ////////////////////////////////////////////////////////////////////////////
 
 function popupHandler(modal){
@@ -81,15 +86,14 @@ function addCard() {
   document.querySelector(".element__container").prepend(createdCard._cardElement)
 }
 // Esc and clicking off functionality ///////////////////////////////////////////////////////////////////////////
-function popUpImage(e) {
+function popUpImage() {
   document.querySelector(".element__pop-up-container").classList.remove("element__pop-up-container_display")
   overlay.classList.remove("overlay_dark")
 }
 
 function escImage() {
   window.addEventListener("keydown", (e) => {
-    console.log(e.key)
-    if (e.key == "Escape") {
+    if (e.key === "Escape") {
       popUpImage(e)
     }
   })
@@ -97,7 +101,7 @@ function escImage() {
 
 function clickOffImage() {
   window.addEventListener("click", (e) => {
-    if (e.target.className == "element__pop-up-container element__pop-up-container_display") {
+    if (e.target.className === "element__pop-up-container element__pop-up-container_display") {
       popUpImage(e)
     }
   })

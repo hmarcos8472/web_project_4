@@ -44,22 +44,19 @@ export class FormValidator {
       submitButton.classList.add(this._inactiveButtonClass)
     }
   }
-}
 
-export function validateForms(validatorSettings) {
-  const forms = [...document.querySelectorAll(".pop-up__form")]
-  forms.forEach((form) => {
-    const newForm = new FormValidator(validatorSettings, form)
-    newForm._formElement.addEventListener("submit", (e) => {
+  _validateForm() {
+    this._formElement.addEventListener("submit", (e) => {
       e.preventDefault()
     })
-    newForm._formElement.addEventListener("input", () => {
-      newForm._setButtonState()
+    this._formElement.addEventListener("input", () => {
+      this._setButtonState()
     })
-    newForm._inputList.forEach((input) => {
+    this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
-        newForm._inputValidity(input)
+        this._inputValidity(input)
       })
     });
-  });
+  }
+  
 }
