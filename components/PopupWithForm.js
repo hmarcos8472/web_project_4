@@ -1,32 +1,30 @@
 import Popup from "./Popup.js"
 import {Card} from "./Card.js"
-import UserInfo from "./UserInfo.js"
 
 export default class PopupWithForm extends Popup{
   constructor(popupSelector){
     super(popupSelector)
   }
+  open(submitButtonType){
+    this._popupElement.parentElement.classList.add("pop-up__container_active")
+    document.querySelector(".overlay").classList.add("overlay_dark")
+    document.addEventListener('keydown', this._handleEscClose)
+    this.setEventListeners(submitButtonType)
+  }
   close(){
     this._popupElement.parentElement.classList.remove("pop-up__container_active")
     document.querySelector(".overlay").classList.remove("overlay_dark")
     document.removeEventListener('keydown', this._handleEscClose)
-    /////Reset Form//////
+    this._popupElement.querySelector(".pop-up__form").reset()
   }
   _getInputValues(){
     const inputs = Array.from(this._popupElement.querySelectorAll(".pop-up__input"))
     return [inputs[0].value, inputs[1].value]
   }
-  setEventListeners(){
+  setEventListeners(submitButtonType){
     this._popupElement.querySelector(".pop-up__close").addEventListener("click", () => {this.close()})
     this._popupElement.querySelector(".pop-up__save").addEventListener("click", () => {
-      if (this._popupSelector === ".pop-up") {
-        const formValues = this._getInputValues()
-        const profileUserInfo = new UserInfo({
-          userNameSelector: ".profile__name",
-          userOccupationSelector: ".profile__occupation"
-        })
-        profileUserInfo.setUserInfo(formValues)
-      }
+      submitButtonType()
       this.close()
     })
   }

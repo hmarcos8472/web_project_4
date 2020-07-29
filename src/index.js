@@ -3,6 +3,7 @@ import {FormValidator} from "./../components/FormValidator.js"
 import PopupWithForm from "./../components/PopupWithForm.js"
 import PopupWithImage from "./../components/PopupWithImage.js"
 import Section from "./../components/Section.js"
+import UserInfo from "./../components/UserInfo.js"
 import "./../pages/index.css"
 
 // Declaring Buttons //////////////////////////////////////////////////////////////////////////////
@@ -71,21 +72,27 @@ validateAddCard._validateForm()
 
 //Adding Listeners for 'Edit' Buttons///////////////////////////////////////////
 editButton.addEventListener("click", () => {
-  editForm.open()
+  editForm.open(() => {
+    const inputs = Array.from(editForm._popupElement.querySelectorAll(".pop-up__input"))
+    const formValues =  [inputs[0].value, inputs[1].value]
+    const profileUserInfo = new UserInfo({
+      userNameSelector: ".profile__name",
+      userOccupationSelector: ".profile__occupation"
+    })
+    profileUserInfo.setUserInfo(formValues)
+  })
 })
 
 //Adding Listeners for 'Add' Buttons////////////////////////////////////////////
 addButton.addEventListener("click", () => {
-  addForm.open()
-})
-
-addCardButton.addEventListener("click", () => {
-  const formValues = addForm._getInputValues()
-  const cardData = {name: formValues[0], link: formValues[1]}
-  const newCard = new Card(cardData, "#place", function(e){
-    popupImage.open(cardData)
+  addForm.open(() => {
+    const formValues = addForm._getInputValues()
+    const cardData = {name: formValues[0], link: formValues[1]}
+    const newCard = new Card(cardData, "#place", function(e){
+      popupImage.open(cardData)
+    })
+    newCard.generateCard()
+    newCard._setEventListeners()
+    cardSection.addItem(newCard._cardElement)
   })
-  newCard.generateCard()
-  newCard._setEventListeners()
-  cardSection.addItem(newCard._cardElement)
 })
