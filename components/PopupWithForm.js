@@ -1,5 +1,4 @@
 import Popup from "./Popup.js"
-import {Card} from "./Card.js"
 
 export default class PopupWithForm extends Popup{
   constructor(popupSelector){

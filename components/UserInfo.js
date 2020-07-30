@@ -4,13 +4,13 @@ export default class UserInfo {
     this._userOccupationSelector = userOccupationSelector
   }
   getUserInfo(){
-    const userName = document.querySelector(this._userNameSelector)
-    const userOccupation = document.querySelector(this._userOccupationSelector)
+    const userName = document.querySelector(this._userNameSelector).value
+    const userOccupation = document.querySelector(this._userOccupationSelector).value
     return [userName, userOccupation]
   }
   setUserInfo(inputValues){
     const userInfo = this.getUserInfo()
-    userInfo[0].textContent = inputValues[0]
-    userInfo[1].textContent = inputValues[1]
+    document.querySelector(".profile__name").textContent = userInfo[0]
+    document.querySelector(".profile__occupation").textContent = userInfo[1]
   }
 }

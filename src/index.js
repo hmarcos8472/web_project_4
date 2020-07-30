@@ -1,15 +1,14 @@
-import {Card} from "./../components/Card.js"
-import {FormValidator} from "./../components/FormValidator.js"
-import PopupWithForm from "./../components/PopupWithForm.js"
-import PopupWithImage from "./../components/PopupWithImage.js"
-import Section from "./../components/Section.js"
-import UserInfo from "./../components/UserInfo.js"
-import "./../pages/index.css"
+import {Card} from "../components/Card.js"
+import {FormValidator} from "../components/FormValidator.js"
+import PopupWithForm from "../components/PopupWithForm.js"
+import PopupWithImage from "../components/PopupWithImage.js"
+import Section from "../components/Section.js"
+import UserInfo from "../components/UserInfo.js"
+import "../pages/index.css"
 
 // Declaring Buttons //////////////////////////////////////////////////////////////////////////////
 const editButton = document.querySelector(".profile__edit")
 const addButton = document.querySelector(".profile__add")
-const addCardButton = document.querySelector(".pop-up__save_add")
 
 const editForm = new PopupWithForm(".pop-up")
 const addForm = new PopupWithForm(".pop-up_add")
@@ -44,7 +43,7 @@ const initialCards = [
 ];
 const cardSection = new Section({renderedItems: initialCards, renderer:
   (item) => {
-    const newCard = new Card(item, "#place", function(){
+    const newCard = new Card(item, "#place", () => {
       popupImage.open(item);
     })
     newCard.generateCard()
@@ -71,14 +70,14 @@ validateEdit._validateForm()
 validateAddCard._validateForm()
 
 //Adding Listeners for 'Edit' Buttons///////////////////////////////////////////
+const profileUserInfo = new UserInfo({
+  userNameSelector: ".pop-up__name-input",
+  userOccupationSelector: ".pop-up__occupation-input"
+})
 editButton.addEventListener("click", () => {
   editForm.open(() => {
     const inputs = Array.from(editForm._popupElement.querySelectorAll(".pop-up__input"))
     const formValues =  [inputs[0].value, inputs[1].value]
-    const profileUserInfo = new UserInfo({
-      userNameSelector: ".profile__name",
-      userOccupationSelector: ".profile__occupation"
-    })
     profileUserInfo.setUserInfo(formValues)
   })
 })
@@ -88,11 +87,12 @@ addButton.addEventListener("click", () => {
   addForm.open(() => {
     const formValues = addForm._getInputValues()
     const cardData = {name: formValues[0], link: formValues[1]}
-    const newCard = new Card(cardData, "#place", function(e){
+    const newCard = new Card(cardData, "#place", (e) => {
       popupImage.open(cardData)
     })
     newCard.generateCard()
     newCard._setEventListeners()
-    cardSection.addItem(newCard._cardElement)
+    if (newCard._link !== ""){
+      cardSection.addItem(newCard._cardElement)}
   })
 })
