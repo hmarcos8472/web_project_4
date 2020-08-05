@@ -4,9 +4,9 @@ export default class PopupWithImage extends Popup{
   constructor(popupSelector){
     super(popupSelector)
   }
-  open({link, name}){
-    this._popupElement.querySelector(".element__pop-up").style.backgroundImage = `url('${link}')`
-    this._popupElement.querySelector(".element__tag").innerText = name
+  open(card){
+    this._popupElement.querySelector(".element__pop-up").style.backgroundImage = `url('${card.link}')`
+    this._popupElement.querySelector(".element__tag").innerText = card.title
     document.querySelector(".element__pop-up-container").classList.add("element__pop-up-container_display")
     document.querySelector(".overlay").classList.add("overlay_dark")
     document.addEventListener('keydown', this._handleEscClose)

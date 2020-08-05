@@ -18,7 +18,7 @@ export default class PopupWithForm extends Popup{
   }
   _getInputValues(){
     const inputs = Array.from(this._popupElement.querySelectorAll(".pop-up__input"))
-    return [inputs[0].value, inputs[1].value]
+    return {title: inputs[0].value, link: inputs[1].value}
   }
   setEventListeners(submitButtonType){
     this._popupElement.querySelector(".pop-up__close").addEventListener("click", () => {this.close()})
