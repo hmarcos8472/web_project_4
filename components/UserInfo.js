@@ -12,4 +12,7 @@ export default class UserInfo {
     document.querySelector(".profile__name").textContent = name
     document.querySelector(".profile__occupation").textContent = about
   }
+  setUserAvatar({avatar}){
+    document.querySelector(".profile__avatar").src = avatar
+  }
 }

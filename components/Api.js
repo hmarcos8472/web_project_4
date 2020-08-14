@@ -28,8 +28,8 @@ export default class Api {
       headers: this._headers,
       method: "POST",
       body: JSON.stringify({
-        title,
-        link
+        name: title,
+        link: link
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
@@ -37,41 +37,61 @@ export default class Api {
   }
 
 
-  removeCard() {
-
+  removeCard(cardId) {
+    return fetch(this._baseUrl + '/cards/' + cardId, {
+      headers: this._headers,
+      method: "DELETE"
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+    .catch(err => console.log(err))
   }
 
 //PUT https://around.nomoreparties.co/v1/group-3/cards/likes/cardId
-  changeLikeCardStatus() {
+  likeCard(cardId) {
+    return fetch(this._baseUrl + '/cards/likes/' + cardId, {
+      headers: this._headers,
+      method: "PUT"
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+    .catch(err => console.log(err))
+  }
 
+  removeLike(cardId) {
+    return fetch(this._baseUrl + '/cards/likes/' + cardId, {
+      headers: this._headers,
+      method: "DELETE"
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+    .catch(err => console.log(err))
   }
 
 
-  setUserInfo() {
-    fetch("https://around.nomoreparties.co/v1/group-3/users/me", {
+  setUserInfo({name, about}) {
+    fetch(this._baseUrl + '/users/me', {
       method: "PATCH",
       headers: {
         authorization: "0822cc1d-2b11-427a-9c40-48a5387f2b93",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name: "Marie Skłodowska Curie",
-        about: "Physicist and Chemist"
+        name: name,
+        about: about
       })
     });
   }
 
-
-  setUserAvatar() {
-
+// PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
+  setUserAvatar({avatar}) {
+    return fetch(this._baseUrl + '/users/me/avatar', {
+      method: "PATCH",
+      headers: {
+        authorization: "0822cc1d-2b11-427a-9c40-48a5387f2b93",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        avatar: avatar
+      })
+    });
   }
 
 }
-
-// const api = new Api({
-//   baseUrl: "https://around.nomoreparties.co/v1/group-3",
-//   headers: {
-//     authorization: "0822cc1d-2b11-427a-9c40-48a5387f2b93",
-//     "Content-Type": "application/json"
-//   }
-// });

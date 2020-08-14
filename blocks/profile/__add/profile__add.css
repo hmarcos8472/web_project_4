@@ -14,7 +14,7 @@ background-size: auto;
 
 .profile__add:hover {
 opacity: 60%;
-transition: 1s;
+transition: 5s;
 }
 
 @media (min-width: 500px) and (max-width: 824px) {

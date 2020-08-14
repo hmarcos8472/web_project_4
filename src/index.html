@@ -14,7 +14,10 @@
         </header>
         <main>
           <section class="profile">
-            <img src="./../images/image.jpg" alt="Avatar" class="profile__avatar">
+            <img src="#" alt="Avatar" class="profile__avatar">
+            <div class="profile__avatar-overlay">
+
+            </div>
             <div class="profile__text-container">
               <p class="profile__name"></p>
               <p class="profile__occupation"></p>
@@ -61,21 +64,43 @@
         </form>
       </section>
       </div>
+      <div class="pop-up__container">
+        <section class="pop-up_type_delete">
+          <button class="pop-up__close"></button>
+          <p class="pop-up__heading_type_delete">Are you sure?</p>
+          <form class="pop-up__form" novalidate>
+            <button class="pop-up__save">Yes</button>
+          </form>
+        </section>
+      </div>
+      <div class="pop-up__container">
+        <section class="pop-up_type_avatar">
+          <button class="pop-up__close"></button>
+          <p class="pop-up__heading_type_delete">Change profile picture</p>
+          <form class="pop-up__form" novalidate>
+            <input id="avatar-url" name="avatar url" type="url" required class="pop-up__url-input pop-up__avatar-input pop-up__input" placeholder="Avatar URL">
+            <span id="avatar-url-error" class="pop-up__error pop-up__error_visible"></span>
+            <button class="pop-up__save pop-up__save_disabled" type="button" name="Save" disabled>Save</button>
+          </form>
+        </section>
+      </div>
     </div>
     <template id="place">
       <li class="element__card">
-        <div class="element__image" style="background-image:url('#')">
+        <div class="element__image">
           <button class="element__trash" type="button" name="trash"></button>
         </div>
         <div class="element__caption">
           <h2 class="element__title"></h2>
-          <button class="element__heart" type="button" name="like" style="background-image:url('images/heart-icon.svg')"></button>
+          <button class="element__heart" type="button" name="like">
+            <p class="element__likes"></p>
+          </button>
         </div>
       </li>
     </template>
     <div class="element__pop-up-container">
       <div class="element__pop-up" style="background-image:url('#')">
-        <button class="pop-up__close pop-up__close_image"></button>
+        <button type="button" name="Save" class="pop-up__close pop-up__close_image"></button>
       </div>
       <p class="element__tag"></p>
     </div>

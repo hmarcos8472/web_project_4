@@ -1,3 +1,6 @@
+@import url("./_filled/element__heart_filled.css");
+@import url("./_empty/element__heart_empty.css");
+
 .element__heart {
   height: 19px;
   width: 23px;
@@ -16,7 +19,7 @@
 
 .element__heart:hover {
   opacity: 60%;
-  transition: 1s;
+  transition: 5s;
 }
 
 @media (min-width: 700px) and (max-width: 824px) {

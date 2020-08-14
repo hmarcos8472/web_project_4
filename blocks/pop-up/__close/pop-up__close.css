@@ -1,5 +1,5 @@
 .pop-up__close {
-  position: absolute;
+  position: fixed;
   left: 1020px;
   top: 170px;
   cursor: pointer;
@@ -14,7 +14,7 @@
 
 .pop-up__close:hover {
   opacity: 60%;
-  transition: 1s;
+  transition: 5s;
 }
 
 @media (min-width:430px) and (max-width: 500px) {

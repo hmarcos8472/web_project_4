@@ -9,6 +9,7 @@
 @import url("./__pop-up/element__pop-up.css");
 @import url("./__pop-up-container/_display/element__pop-up-container_display.css");
 @import url("./__tag/element__tag.css");
+@import url("./__likes/element__likes.css");
 
 .element {
   padding: 50px 0 66px;
