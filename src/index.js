@@ -17,13 +17,6 @@ const deleteForm = new PopupWithForm(".pop-up_type_delete")
 const avatarForm = new PopupWithForm(".pop-up_type_avatar")
 const popupImage = new PopupWithImage(".element__pop-up-container")
 
-// console.log(deleteForm._popupElement)
-document.querySelector(".profile__name").addEventListener("click", () => {
-  deleteForm.open(() => {
-    console.log(hello)
-  })
-})
-
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-3",
   headers: {
@@ -50,7 +43,8 @@ api.getInitialCards().then(res => {
         return item.name
       })
       const newCard = new Card({title: item.name, link: item.link, likes: item.likes}, "#place", () => {
-        popupImage.open({title: item.name, link: item.link});
+        popupImage.open();
+        popupImage.setImageSource({title: item.name, link: item.link})
       },
       //handleDeleteClick Function
       (cardId) => {
@@ -60,35 +54,28 @@ api.getInitialCards().then(res => {
       (cardId) => {
         if (item.likes.includes(userName)) {
           api.removeLike(cardId)
-          item.likes.shift(userName)
+          item.likes.pop()
           return true
         } else {
           api.likeCard(cardId)
-          item.likes.unshift(userName)
+          item.likes.push(userName)
           return false
         }
       })
 
       newCard._id = item._id
+      newCard._owner = item.owner.name
       newCard.generateCard()
-      // This if statement sets the heart icon status according to if you have already liked the image
-      if (newCard._likes.includes(userName)) {
-        newCard._cardElement.querySelector(".element__heart").classList.add("element__heart_filled")
-      } else {
-        newCard._cardElement.querySelector(".element__heart").classList.add("element__heart_empty")
-      }
-      //this if statement removes the delete icon if the card does not belong to you
-      if (item.owner.name === document.querySelector(".profile__name").innerHTML) {
-        newCard._cardElement.querySelector(".element__trash").style.display = "block"
-      }
-      newCard._setEventListeners(deleteForm)
+      newCard.setInitialCardStyle(userName)
+      newCard.setEventListeners(deleteForm)
+
       return newCard._cardElement
     }
   }, ".element__container")
   cardSection.renderAll()
-
+  //////////////////////////////////////////////////////////////////////////////
   addButton.addEventListener("click", () => {
-    addForm.open(() => {
+    addForm.setEventListeners(() => {
      const formValues = addForm._getInputValues()
      formValues.likes = []
 
@@ -104,28 +91,28 @@ api.getInitialCards().then(res => {
          },
          //handleLikeClick Function
          (cardId) => {
-           if (newCard._likes.includes(userName)) {
+           if (newCard.likes.includes(userName)) {
              api.removeLike(cardId)
-             newCard._likes.shift(userName)
+             newCard.likes.pop()
              return true
            } else {
              api.likeCard(cardId)
-             newCard._likes.unshift(userName)
+             newCard.likes.push(userName)
              return false
            }
          })
 
          newCard._id = res._id
          newCard.generateCard()
-         newCard._cardElement.querySelector(".element__heart").classList.add("element__heart_empty")
-         newCard._cardElement.querySelector(".element__trash").style.display = "block"
-         newCard._setEventListeners(deleteForm)
+         newCard.setNewCardStyle()
+         newCard.setEventListeners(deleteForm)
 
          cardSection.addItem(newCard._cardElement)
        })
      }
 
     })
+    addForm.open()
   })
 })
 
@@ -151,24 +138,24 @@ validateAvatar._validateForm()
 
 //Adding Listeners for 'Edit' Buttons///////////////////////////////////////////
 editButton.addEventListener("click", () => {
-  editForm.open(() => {
-    const inputs = Array.from(editForm._popupElement.querySelectorAll(".pop-up__input"))
-    const formValues =  {name: inputs[0].value, about: inputs[1].value}
+  editForm.setEventListeners(() => {
+    const formValues =  profileUserInfo.getUserInfo()
     if (formValues.name !== "") {
       profileUserInfo.setUserInfo(formValues)
       api.setUserInfo(formValues)
     }
   })
+  editForm.open()
 })
 
 avatar.addEventListener("click", () => {
-  avatarForm.open(() => {
+  avatarForm.setEventListeners(() => {
     const input = avatarForm._popupElement.querySelector(".pop-up__input")
     const formValue =  {avatar: input.value}
     if (formValue.avatar !== "") {
-      console.log(formValue.avatar)
       api.setUserAvatar(formValue)
       profileUserInfo.setUserAvatar(formValue)
     }
   })
+  avatarForm.open()
 })

@@ -77,7 +77,9 @@ export default class Api {
         name: name,
         about: about
       })
-    });
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+    .catch(err => console.log(err))
   }
 
 // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
@@ -91,7 +93,9 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatar
       })
-    });
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+    .catch(err => console.log(err))
   }
 
 }
