@@ -37,6 +37,7 @@ api.getUserInfo().then(res => {
 
 api.getInitialCards().then(res => {
   const userName = document.querySelector(".profile__name").innerHTML
+  console.log(userName)
   const cardSection = new Section({renderedItems: res, renderer:
     (item) => {
       item.likes = item.likes.map((item) => {
@@ -63,8 +64,8 @@ api.getInitialCards().then(res => {
         }
       })
 
-      newCard._id = item._id
-      newCard._owner = item.owner.name
+      newCard.id = item._id
+      newCard.owner = item.owner.name
       newCard.generateCard()
       newCard.setInitialCardStyle(userName)
       newCard.setEventListeners(deleteForm)
@@ -85,10 +86,12 @@ api.getInitialCards().then(res => {
          const newCard = new Card(formValues, "#place", (e) => {
            popupImage.open({title: formValues.title, link: formValues.link})
          },
+
          //handleDeleteClick function
          (cardId) => {
            api.removeCard(cardId)
          },
+
          //handleLikeClick Function
          (cardId) => {
            if (newCard.likes.includes(userName)) {
@@ -102,7 +105,7 @@ api.getInitialCards().then(res => {
            }
          })
 
-         newCard._id = res._id
+         newCard.id = res._id
          newCard.generateCard()
          newCard.setNewCardStyle()
          newCard.setEventListeners(deleteForm)

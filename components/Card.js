@@ -4,8 +4,8 @@ export class Card {
     this._link = data.link
     this.likes = data.likes
     this._likeCount = this.likes.length
-    this._id = ""
-    this._owner - ""
+    this.id = ""
+    this.owner - ""
     this._templateSelector = templateSelector
     this._handleCardClick = handleCardClick
     this._handleDeleteClick = handleDeleteClick
@@ -49,7 +49,7 @@ export class Card {
      } else {
        this._cardElement.querySelector(".element__heart").classList.add("element__heart_empty")
      }
-     if (this._owner === userName) {
+     if (this.owner === userName) {
        this._cardElement.querySelector(".element__trash").style.display = "block"
      }
    }
@@ -61,7 +61,7 @@ export class Card {
 
    setEventListeners(deleteFormPopup) {
      this._cardElement.querySelector(".element__heart").addEventListener("click", () => {
-       this._likeCard(this._handleLikeClick(this._id))
+       this._likeCard(this._handleLikeClick(this.id))
      })
      this._cardElement.querySelector(".element__image").addEventListener("click", (e) => {
        if (e.target.className === "element__image")
@@ -70,7 +70,7 @@ export class Card {
      this._cardElement.querySelector(".element__trash").addEventListener("click", () => {
        deleteFormPopup.setEventListeners(() => {
          this._deleteCard()
-         this._handleDeleteClick(this._id)
+         this._handleDeleteClick(this.id)
        })
        deleteFormPopup.open()
      })

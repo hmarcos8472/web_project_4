@@ -8,6 +8,9 @@ export default class UserInfo {
     const userOccupation = document.querySelector(this._userOccupationSelector).value
     return {name: userName, about: userOccupation}
   }
+  getUserName(){
+    return document.querySelector(".profile__name").textContent
+  }
   setUserInfo({name, about}){
     document.querySelector(".profile__name").textContent = name
     document.querySelector(".profile__occupation").textContent = about
