@@ -36,8 +36,7 @@ api.getUserInfo().then(res => {
 })
 
 api.getInitialCards().then(res => {
-  const userName = document.querySelector(".profile__name").innerHTML
-  console.log(userName)
+  const userName = profileUserInfo.getUserName()
   const cardSection = new Section({renderedItems: res, renderer:
     (item) => {
       item.likes = item.likes.map((item) => {
